@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -15,16 +16,23 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'provider_id' => 'required',
-            'titulo' => 'required',
-            'descricao' => 'required',
-            'categoria' => 'required',
-            'quantidade' => 'required',
-            'preco' => 'required'
+        $produto = $request->all();
+        $produto['preco'] = str_replace(',', '.', $request->preco);
+
+        $produtos = Validator::make($produto, [
+            'provider_id' => ['required', 'integer'],
+            'titulo' => ['required', 'string'],
+            'descricao' => ['required', 'string'],
+            'categoria' => ['required', 'string'],
+            'quantidade' => ['required', 'integer'],
+            'preco' => ['required', 'numeric']
         ]);
 
-        return Product::create($request->all());
+        if ($produtos->fails()) {
+            return ['message' => 'Algo deu errado :c'];
+        }
+
+        return Product::create($produto);
     }
 
     public function show($id)
@@ -34,10 +42,26 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $produto = Product::findOrFail($id);
-        $produto -> update($request->all());
-        $produto ->save();
-        return $produto; 
+        $prod = Product::findOrFail($id);
+        $produto = $request->all();
+        $produto['preco'] = str_replace(',', '.', $request->preco);
+
+        $produtos = Validator::make($produto, [
+            'provider_id' => ['required', 'integer'],
+            'titulo' => ['required', 'string'],
+            'descricao' => ['required', 'string'],
+            'categoria' => ['required', 'string'],
+            'quantidade' => ['required', 'integer'],
+            'preco' => ['required', 'numeric']
+        ]);
+
+        if ($produtos->fails()) {
+            return ['message' => 'Algo deu errado :c'];
+        }
+
+        $prod->update($produto);
+        $prod->save();
+        return $produto;
     }
 
     public function destroy($id)

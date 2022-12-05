@@ -6,20 +6,31 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use PhpParser\Parser\Tokens;
 
 class AuthController extends Controller
 {
     public function register(Request $request){
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
-            'password' => 'required|string|confirmed'
+
+        $credenciais = Validator::make($request->all(),[
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string', 'min:6']
         ]);
+
+        if($credenciais->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => 'Dados inválidos',
+                'error' => $credenciais->errors()
+            ],401);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password)
         ]);
 
         $token = $user->createToken('master')->plainTextToken;
@@ -34,36 +45,45 @@ class AuthController extends Controller
 
     public function login(Request $request){
 
-        $request->validate([
-            'email' => 'required',
+        $credenciais = Validator::make($request->all(),[
+            'email' => 'required|email',
             'password' => 'required'
         ]);
-
-        $credenciais = $request->only('email', 'password');
-
-        if(!Auth::attempt($credenciais)){
-            return ['message' => 'Credenciais inválidas !'];
-        }
         
-        // if(!$user || !Hash::check($request->password, $user->password)){
-        //     return response(['message' => 'Credenciais inválidas !'], 404);
-        // }
+        if($credenciais->fails()){
+            return response()->json([
+                'status' => false,
+                'message' => 'Credenciais inválidas',
+                'error' => $credenciais->errors()
+            ],401);
+        }
 
-        // $token = $user->createToken('master')->plainTextToken; 
+        if(!Auth::attempt($request->only(['email', 'password']))){
+            return response()->json([
+                'status' => false,
+                'message' => 'Credenciais inválidas',
+                'error' => $credenciais->errors()
+            ],401);
+        }
 
-        // $response =[
-        //     'user' => $user,
-        //     'token' => $token
-        // ];
+        $user = User::where('email', $request->email)->first();
 
-        // return response($response, 201); 
+        $token = $user->createToken('master')->plainTextToken;
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Login efetuado com sucesso !',
+            'token' => $token
+        ],200); 
     }
 
-    public function logout(Request $request){
+    public function logout(){
+        
+        auth()->user()->tokens()->delete();
 
-        $request->user()->currentAccessToken()->delete();
-
-        return ['message' => 'Usuário desconectado !'];
+        return response()->json([
+            'message' => 'Você foi desconectado com sucesso !',
+        ],200); 
 
     }
 }
