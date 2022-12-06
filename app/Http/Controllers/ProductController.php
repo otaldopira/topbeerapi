@@ -29,7 +29,7 @@ class ProductController extends Controller
         ]);
 
         if ($produtos->fails()) {
-            return ['message' => 'Algo deu errado :c'];
+            return $produtos->errors();
         }
 
         return Product::create($produto);
@@ -56,7 +56,7 @@ class ProductController extends Controller
         ]);
 
         if ($produtos->fails()) {
-            return ['message' => 'Algo deu errado :c'];
+            return $produtos->errors();
         }
 
         $prod->update($produto);

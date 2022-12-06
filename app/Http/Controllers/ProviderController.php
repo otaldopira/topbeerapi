@@ -52,8 +52,6 @@ class ProviderController extends Controller
             'nome' => ['required', 'string', 'min:3'],
             'cnpj' => ['required', 'string', new Cnpj],
             'email' => ['required', 'email'],
-        ], [
-            'nome.required' => 'O nome é obrigatório !'
         ]);
 
         if ($fornecedor->fails()) {
