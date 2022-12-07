@@ -1,66 +1,71 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## INSTALAÇÃO
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Caso não tenha o **composer** e o **xampp** instalados, por favor baixar e instalar antes para evitar erro.
 
-## About Laravel
+- [Baixar Composer](https://getcomposer.org/Composer-Setup.exe)
+- [Baixar Xampp](https://www.apachefriends.org/download.html)
+- [Baixar insomnia](https://insomnia.rest/download)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## PRÓXIMOS PASSOS:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**1.** Deixe o servidor rodando(ativo). Executando o xampp que fica em `c:\xampp` de **duplo clique** em `xampp-control` que esta dentro da pasta. quando ele abrir você clicara em **start** referente a **apache** e a **mysql** feito imagem abaixo:
 
-## Learning Laravel
+![image](https://user-images.githubusercontent.com/97483102/199866517-360d261a-65d3-45ca-8afc-28b116002951.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. Extrair o arquivo baixado:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![image](https://user-images.githubusercontent.com/97483102/206317552-ecba02cb-7c5b-4f99-ad56-15d18e1d7f80.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Entre na pasta **topbeerapi** e dentro dela faça o seguinte procedimento para abrir o power shell **segurar shift + botão direito do mouse**, e clicar em **Abrir janela do PowerShell aqui**:
 
-## Laravel Sponsors
+![image](https://user-images.githubusercontent.com/97483102/199867233-f4eb3b95-0364-4da3-94fb-01b80076d5d0.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. Após abrir a janela do power shell é so digitar o comando `composer install` feito a imagem abaixo:
 
-### Premium Partners
+![image](https://user-images.githubusercontent.com/97483102/206318022-37afd061-cd2b-4fdc-8250-c4bef3e67c34.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. Se o Composer e o PHP estiver instalado corretamente vai acontecer algo similar a imagem abaixo:
 
-## Contributing
+![image](https://user-images.githubusercontent.com/97483102/206318387-8bdef9dc-def2-4dd7-9fd7-ba4bf7de15bf.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Agora é hora de criar um banco de dados pelo **phpmyadmin**, para isso digite a url no navegador: `http://localhost/phpmyadmin/` e dentro dele crie um bd com o nome **topbeerapi**. clicando no botão **novo**:
 
-## Code of Conduct
+![image](https://user-images.githubusercontent.com/97483102/206319027-e5d091b4-de50-44e9-add1-ad1df67612c6.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. Após isso, abra a pasta do projeto com o editor de sua preferência, e renomeie o arquivo `.env.example` para `.env`:
 
-## Security Vulnerabilities
+![image](https://user-images.githubusercontent.com/97483102/206319866-e4a4b2c3-ed47-4822-9550-344183d6dc81.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. Configure o arquivo `.env`:
 
-## License
+![image](https://user-images.githubusercontent.com/97483102/206320220-60cb6379-b4d5-4fde-bc4e-6d053238fd6e.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+9. Abra o console e digite o seguinte código: `php artisan migrate`
+
+![image](https://user-images.githubusercontent.com/97483102/206320395-0d931b9d-ce85-44d2-9e97-d0b642a47cb4.png)
+
+10. Vai criar as tabelas no banco de dados.
+
+![image](https://user-images.githubusercontent.com/97483102/206320647-ac277c47-4b2e-435f-95f1-bc46a182e42f.png)
+
+11. No terminal ainda, rode o seguinte comando: `php artisan serve` para iniciar o servidor
+
+![image](https://user-images.githubusercontent.com/97483102/206320950-2fbf28b1-75ff-4835-b78b-bb353424791c.png)
+
+## Adicional:
+
+1. Abra o Insomnia e importe o arquivo chamado `insomnia`
+
+2. Na pasta autenticação, vai em registrar Token e cadastre o usuário para conseguir fazer as operações de **POST, PUT e DELETE**:
+
+![image](https://user-images.githubusercontent.com/97483102/206321411-5286d8c7-25b2-4a02-b93e-90de791cfd79.png)
+                                                                 
+## Grupo:
+Eric Gustavo Denkievicz                               
+Gabriel Jun Shibata                               
+Gláucio Ferreira de Araújo   
+
+
+
+
